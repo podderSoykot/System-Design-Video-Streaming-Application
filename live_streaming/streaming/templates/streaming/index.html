@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stream</title>
+</head>
+<body>
+    <h1>Live Video Streaming</h1>
+    <button onclick="startStream()">Start Stream</button>
+    <button onclick="stopStream()">Stop Stream</button>
+    <div>
+        <img id="video" width="640" height="480" />
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const socket = new WebSocket('ws://' + window.location.host + '/ws/stream/');
+
+        socket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            video.src = 'data:image/jpeg;base64,' + data.frame;
+        };
+
+        function startStream() {
+            socket.send(JSON.stringify({ 'action': 'start' }));
+        }
+
+        function stopStream() {
+            socket.send(JSON.stringify({ 'action': 'stop' }));
+        }
+    </script>
+</body>
+</html>
+
