@@ -1,4 +1,3 @@
-```markdown
 # Live Video Streaming Application - System Design
 
 This repository contains the high-level system design for a live video streaming application. The goal of this design is to provide a scalable, reliable, and user-friendly platform for live video broadcasting, viewing, and interaction.
@@ -39,60 +38,60 @@ This repository contains the high-level system design for a live video streaming
 ## Detailed Design
 
 ### Client-Side
-- **Web/Mobile App**:
+- **Web/Mobile App**
   - Built using frameworks like React Native for mobile and React.js or Angular for web.
   - Incorporates libraries like WebRTC for live video capture and playback.
 
 ### Server-Side
-- **Authentication Server**:
+- **Authentication Server**
   - Built using frameworks like Django or Express.js.
   - Utilizes OAuth 2.0 for secure authentication.
   - Database: PostgreSQL or MongoDB for user data.
 
-- **Streaming Server**:
+- **Streaming Server**
   - Uses protocols like RTMP (Real-Time Messaging Protocol) for video ingestion.
   - Transcodes the stream using FFmpeg or a similar tool to multiple bitrates for adaptive streaming.
   - Utilizes HLS (HTTP Live Streaming) or DASH (Dynamic Adaptive Streaming over HTTP) for video delivery.
 
-- **Chat Server**:
+- **Chat Server**
   - Uses WebSocket for real-time communication.
   - Frameworks like Socket.IO or SignalR can be used.
 
-- **Notification Server**:
+- **Notification Server**
   - Uses services like Firebase Cloud Messaging (FCM) or Apple Push Notification Service (APNS).
 
-- **Database**:
+- **Database**
   - User and stream metadata stored in PostgreSQL or MongoDB.
   - Chat logs stored in a fast-access database like Redis.
 
-- **CDN**:
+- **CDN**
   - Services like AWS CloudFront, Akamai, or Cloudflare.
 
-- **Storage**:
+- **Storage**
   - Services like AWS S3 for storing recorded streams.
 
 ## Flow of Data
 
-1. **Stream Initiation**:
+1. **Stream Initiation**
    - The streamer starts a live session using the client app, which captures the video and audio.
    - The video stream is sent to the Streaming Server via RTMP.
 
-2. **Stream Processing**:
+2. **Stream Processing**
    - The Streaming Server transcodes the video into multiple bitrates.
    - The video segments are stored temporarily and delivered using HLS/DASH.
 
-3. **Content Delivery**:
+3. **Content Delivery**
    - The CDN caches and delivers the video segments to viewers with minimal latency.
    - Viewers access the stream via the Media Player in the client app.
 
-4. **Real-Time Interaction**:
+4. **Real-Time Interaction**
    - Viewers interact via the Chat Server using WebSockets.
    - Messages are sent and received in real-time.
 
-5. **Notifications**:
+5. **Notifications**
    - The Notification Server sends alerts to users about live streams and updates.
 
-6. **Recording and Playback**:
+6. **Recording and Playback**
    - The Streaming Server records the live session.
    - Recorded streams are stored in cloud storage and made available for on-demand playback.
 
@@ -124,4 +123,4 @@ This repository contains the high-level system design for a live video streaming
 ## Conclusion
 
 This system design provides a comprehensive overview of the key components and architecture needed for a live video streaming application. The focus on scalability, reliability, security, and real-time interaction ensures a robust and user-friendly experience.
-```
+
