@@ -12,7 +12,7 @@ html = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Live Streaming</title>
+    <title>Podder Live Streaming</title>
 </head>
 <body>
     <h1>Live Stream</h1>
@@ -56,17 +56,17 @@ async def websocket_endpoint(websocket: WebSocket):
     video_path = r"E:/Torent/Udemy Key English Grammar Rules Needed for IELTS 7+/1. Lectures/1. Present Time.mp4"
     
     if not os.path.exists(video_path):
-        await websocket.close(code=4000)  # Close connection with error code if file not found
+        await websocket.close(code=4000)  
         return
     
     try:
         with open(video_path, 'rb') as video_file:
             while True:
-                data = video_file.read(1024 * 512)  # Read in chunks of 512KB
+                data = video_file.read(1024 * 512)  
                 if not data:
                     break
                 await websocket.send_bytes(data)
-                await asyncio.sleep(0.1)  # Small delay to control streaming rate
+                await asyncio.sleep(0.1) 
     except WebSocketDisconnect:
         print("Client disconnected")
     except Exception as e:
